@@ -3,29 +3,35 @@ import { AppBar, Toolbar, IconButton, Badge,  Typography   } from '@material-ui/
 import { ShoppingCart } from '@material-ui/icons';
 import logo from '../../assets/commerce.png';
 import useStyles from './styles.js';
+import { Link, useLocation } from 'react-router-dom';
 
-const Navebar = ( { totalItems } ) => {
+
+const Navbar = ( { totalItems } ) => {
   const classes = useStyles();
+  const location = useLocation();
+
   return (
     <>
       <AppBar position='fixed' className={classes.appBar} color='inherit'>
         <Toolbar>
-                <Typography variant='h6' className={classes.title} color="inherit">
+                <Typography component={Link} to="/" variant='h6' className={classes.title} color="inherit">
                     <img src={logo} alt="Commerce.js" height='25px' className={classes.image} />
-                     Commers.js
+                     Commerc.js
                 </Typography>
                 <div className={classes.grow} />
+                {location.pathname === '/' && (
                 <div className={classes.button} >
-                    <IconButton aria-label='Show car items' color='inherit'>
-                        <Badge badgeContent={totalItems} color="secondary">
+                  <Link to="/cart">go to cart</Link>
+                    <IconButton component={Link} to="/cart" aria-label='Show car items' color='inherit'>
+                        <Badge badgeContent={totalItems} color="secondary" overlap="rectangular">
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
-                </div>
+                </div> )};
         </Toolbar>
       </AppBar>
     </>
   )
 }
 
-export default Navebar;
+export default Navbar;

@@ -1,6 +1,7 @@
-import { mackStyles } from '@material-ui/icons/styles'
+import { makeStyles } from '@material-ui/core/styles';
 
-export default mackStyles((theme) => ({
+
+export default makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     title: {
         marginTop: '5%',
@@ -14,11 +15,11 @@ export default mackStyles((theme) => ({
             marginRight: '20px',
         },
     },
-    CheckoutButton: {
-        minWidth: '150',
+    checkout: {
+        minWidth: '150px',
     },
     link: {
-        TextDecoration: 'none',
+        textDecoration: 'none',
     },
     cardDetails: {
         display: 'flex',

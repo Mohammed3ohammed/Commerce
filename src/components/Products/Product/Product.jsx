@@ -5,8 +5,10 @@ import useStyles from './styles';
 
 const Product = ( {product, onAddToCart} ) => {
     const classes = useStyles(); 
-
-
+   
+    if (!product || !product.media || !product.media.source) {
+        return <div>Loading...</div>; 
+    }
   return (
     <Card className={classes.root}>
         <CardMedia className={classes.media}  image={product.media.source} title={product.name} />
