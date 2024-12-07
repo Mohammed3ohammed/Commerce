@@ -1,14 +1,37 @@
-import React from 'react';
-import { AppBar, Toolbar, IconButton, Badge,  Typography   } from '@material-ui/core';
+import React, {useState} from 'react';
+import { AppBar, Toolbar, IconButton, Badge, Menu , Typography, MenuItem   } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
 import logo from '../../assets/commerce.png';
 import useStyles from './styles.js';
 import { Link, useLocation } from 'react-router-dom';
 
 
-const Navbar = ( { totalItems } ) => {
+const PrimarySearchAppBar = ( { totalItems } ) => {
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const location = useLocation();
+
+
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+
+
+  const renderMobileMenu = (
+    <Menu anchorEl={mobileMoreAnchorEl} anchorOrigin={{vertical: 'top', horizontal: 'right' }} id={mobileMenuId} keepMounted
+     transrormOrigin={{vertical: 'top', horizontal: 'right'}} open={isMobileMenuOpen} onClose={handleMobileMenuClose}>
+        <MenuItem>
+        <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+        <Badge badgeContent={totalItems} color="secondary">
+          <ShoppingCart />
+        </Badge>
+        </IconButton>
+        <p>Cart</p>
+        </MenuItem>
+     </Menu>
+  )
 
   return (
     <>
@@ -27,11 +50,13 @@ const Navbar = ( { totalItems } ) => {
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
-                </div> )};
+                </div>
+               )}
         </Toolbar>
       </AppBar>
+      {renderMobileMenu}
     </>
-  )
-}
+  );
+};
 
-export default Navbar;
+export default PrimarySearchAppBar;

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { commerce } from './lib/commerce';
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navebar/Navbar.jsx';
 import Product from './components/Products/Product/Product';
 import Cart from './components/Cart/Cart';
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
+import Checkout from './components/CheckoutForm/Check/Checkout.jsx';
 
 
 const App = () => {
